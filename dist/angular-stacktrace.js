@@ -18,12 +18,6 @@ angular.module('angularStacktrace').provider('stacktrace', function() {
       return _this;
     };
   })(this);
-  this.setUuid = (function(_this) {
-    return function(uuid) {
-      _this.options.uuid = uuid;
-      return _this;
-    };
-  })(this);
   this.$get = function() {
     return {
       getOption: (function(_this) {
@@ -60,9 +54,9 @@ angular.module('angularStacktrace').provider('stacktrace', function() {
           message: errorMessage,
           stacktrace: JSON.stringify(stackTrace),
           userAgent: $window.navigator.userAgent,
-          url: $window.location.href,
-          registrationUuid: stacktrace.getOption('uuid')
+          url: $window.location.href
         }),
+        registrationUuid: true,
         skipGlobalErrorHandler: true
       }).then(function(response) {
         return $log.info(response);
