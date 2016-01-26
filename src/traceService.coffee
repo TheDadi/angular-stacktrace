@@ -15,10 +15,6 @@ angular.module('angularStacktrace').provider('stacktrace', ->
     @options.type = type
     return @
 
-  @setUuid = (uuid) =>
-    @options.uuid = uuid
-    return @
-
   @$get = ->
     {
       getOption: (key) =>
@@ -54,8 +50,8 @@ angular.module('angularStacktrace').provider('stacktrace', ->
           stacktrace: JSON.stringify(stackTrace),
           userAgent: $window.navigator.userAgent,
           url: $window.location.href,
-          registrationUuid: stacktrace.getOption('uuid')
         }),
+        registrationUuid: true,
         skipGlobalErrorHandler: true
       }).then(
         (response) ->
